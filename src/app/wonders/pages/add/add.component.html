@@ -1,0 +1,72 @@
+<h1 class="animate__animated animate__fadeIn">
+  {{ wonder.id ? "Edit" : "New Wonder" }}
+  <small> {{ wonder.name }} </small>
+</h1>
+
+<div
+  fxLayout="row"
+  fxLayoutGap="40px"
+  fxLayout.xs="column"
+  class="animate__animated animate__fadeIn"
+>
+  <div fxFlex="50" fxLayout="column">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+      <mat-form-field fxFlex="100" fxLayout.xs="column">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" required [(ngModel)]="wonder.name" />
+      </mat-form-field>
+
+      <mat-form-field fxFlex="100">
+        <mat-label>Location</mat-label>
+        <input matInput type="text" required [(ngModel)]="wonder.location" />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field fxFlex="100">
+      <mat-label>Country</mat-label>
+      <input
+        matInput
+        type="text"
+        required
+        [(ngModel)]="wonder.country"
+      />
+    </mat-form-field>
+
+    <mat-form-field fxFlex="100">
+      <mat-label>Wikipedia Link</mat-label>
+      <input matInput type="text" required [(ngModel)]="wonder.wikipedia_link" />
+    </mat-form-field>
+
+    <mat-form-field fxFlex="100">
+      <mat-label>Type</mat-label>
+      <mat-select required [(ngModel)]="wonder.type">
+        <mat-option *ngFor="let type of types" [value]="type.id">
+          {{ type.id }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="100">
+      <mat-label>Photo URL</mat-label>
+      <input matInput type="url" required [(ngModel)]="wonder.picture_link" />
+    </mat-form-field>
+
+    <div fxLayout>
+      <button mat-raised-button color="accent" (click)="save()">
+        <mat-icon> save </mat-icon>
+        {{ wonder.id ? "Update" : "Save" }}
+      </button>
+
+      <span class="spacer"></span>
+
+      <button *ngIf="wonder.id" mat-raised-button color="warn" (click)="delete()">
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
+    </div>
+  </div>
+
+  <div fxFlex="50">
+    <img [src]="wonder | image" />
+  </div>
+</div>

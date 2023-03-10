@@ -1,0 +1,29 @@
+<mat-grid-list cols="1" *ngIf="!wonder; else divWonder">
+  <mat-grid-tile>
+    <mat-spinner></mat-spinner>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divWonder>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="30px">
+    <div fxFlex="50">
+      <h1>
+        {{ wonder.name }} <small> - {{ wonder.location }}</small>
+      </h1>
+      <mat-divider></mat-divider>
+      <img [src]="wonder | image" />
+    </div>
+
+    <div fxFlex="50">
+      <h1>{{ wonder.type }}</h1>
+      <mat-list>
+        <mat-list-item>Location :  {{ wonder.location }}</mat-list-item>
+        <mat-list-item>Country : {{ wonder.country }}</mat-list-item>
+        <mat-list-item>Type : {{ wonder.type }}</mat-list-item>
+        <mat-list-item>Wikipeda Link: {{ wonder.wikipedia_link }}</mat-list-item>
+      </mat-list>
+      <br />
+      <button mat-button color="warn" (click)="comeBack()">Go back</button>
+    </div>
+  </div>
+</ng-template>

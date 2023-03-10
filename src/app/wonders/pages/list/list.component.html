@@ -1,0 +1,20 @@
+<h1>Wonders</h1>
+<mat-divider></mat-divider>
+
+<div
+  fxLayout="row wrap"
+  fxLayout.xs="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="20px grid"
+  [@listAnimation]="wonders.length"
+>
+  <div
+    fxFlex="20"
+    fxFlex.lg="15"
+    fxFlex.sm="30"
+    *ngFor="let wonder of wonders"
+    class="animate__animated animate__fadeIn"
+  >
+    <app-wonder-card [wonder]="wonder"></app-wonder-card>
+  </div>
+</div>
