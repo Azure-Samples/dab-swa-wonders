@@ -1,0 +1,12 @@
+type Wonder @model {
+  id: ID
+  name: String
+  type: String
+  latitude: String
+  longitude: String
+  country: String
+  location: String
+  wikipedia_link: String
+  picture_link: String
+  build_in_year: String
+}

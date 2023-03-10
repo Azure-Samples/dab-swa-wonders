@@ -1,0 +1,47 @@
+<div fxLayout="column"  class="animate__animated animate__fadeIn">
+    <div>
+        <h1>wonders Search </h1>
+        <mat-divider></mat-divider>
+    </div>
+    <div fxLayout="column">
+        <h3>Search </h3>
+
+        <mat-form-field>
+            <mat-label>Search Term:</mat-label>
+            <input type="text"
+                   placeholder="Pick one"
+                   aria-label="Number"
+                   matInput
+                   [(ngModel)]="term"
+                   [matAutocomplete]="auto"
+                   (ngModelChange)="changed()"
+                   >
+
+            <mat-autocomplete autoActiveFirstOption 
+                              #auto="matAutocomplete" 
+                              class="autocomplete"
+                              (optionSelected)="optionSelected($event)"
+                              >
+              <mat-option 
+                *ngFor="let wonder of wonders" 
+                 [value]="wonder">
+                {{wonder.name}}
+              </mat-option>
+
+              <mat-option value="" *ngIf="wonders.length===0 && term.length>0">
+                Nothing found with the term: {{term}}
+              </mat-option>
+            </mat-autocomplete>
+
+          </mat-form-field>
+    </div>
+
+
+    <div *ngIf="selectedWonder">
+      <app-wonder-card [wonder]="selectedWonder"></app-wonder-card>
+    </div>
+
+
+</div>
+
+
