@@ -14,7 +14,7 @@ This project uses the Data API Builder integrated with Static Web Apps to provid
 ### Prerequisites
 
 1. An Azure Cosmos DB Account (NOSQL API) with collection(wonders) created[Cosmos DB NoSQL API database account](https://learn.microsoft.com/azure/cosmos-db/sql/create-cosmosdb-resources-portal#create-an-azure-cosmos-db-account)
-2. Once the container is created, we can import the sample data from `wonders.json` which is placed in the ['sample-data'](../dab-swa-wonders/sample-data/) folder to the book collection by using the add new item option (Make sure you add one by one item) in the Azure Data Explorer.
+2. Once the container is created, we can import the sample data from `wonders.json` which is placed in the ['sample-data'](../dab-swa-wonders/sample-data/wonders.json) folder to the book collection by using the add new item option (Make sure you add one by one item) in the Azure Data Explorer.
    ![Cosmos DB Add New Document]../dab-swa-wonders/media/cosmos-insert-new.png)
 3. Latest NodeJS and NPM installed
 4. [Visual Studio Code](https://code.visualstudio.com/)
