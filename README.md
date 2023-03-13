@@ -13,10 +13,12 @@ This project uses the Data API Builder integrated with Static Web Apps to provid
 
 ### Prerequisites
 
-1. An Azure Cosmos DB Account (NOSQL API) with collection created
-2. Latest NodeJS and NPM installed
-3. Visual Studio Coede
-4. An Azure Static Web App resource
+1. An Azure Cosmos DB Account (NOSQL API) with collection(wonders) created[Cosmos DB NoSQL API database account](https://learn.microsoft.com/azure/cosmos-db/sql/create-cosmosdb-resources-portal#create-an-azure-cosmos-db-account)
+2. Once the container is created, we can import the sample data from `books.json` which is placed in the ['sample-data'](../dab-swa-wonders/sample-data/) folder to the book collection by using the add new item option (Make sure you add one by one item) in the Azure Data Explorer.
+   ![Cosmos DB Add New Document](../media/cosmos-insert-new.png)
+3. Latest NodeJS and NPM installed
+4. [Visual Studio Code](https://code.visualstudio.com/)
+5. [An Azure Static Web App resource](https://learn.microsoft.com/en-us/azure/static-web-apps/get-started-portal)
 
 ### Installation
 
@@ -44,23 +46,3 @@ You can now use your Wonders Demo Application. It supports authorization, such t
 - Ensure your Cosmos DB Account is configured to accept network requests
 - Ensure that your configuration files have been placed in your repository and included in your build process.
 - Ensure that your managed identity has been configured within your database.
-
-## Screenshots
-
-### Home page:
-
-![alt text](./.readme/mainpage.png)
-
-### Non-logged in users receive 403's when they try to Create as configured in `swa-db-connections/staticwebapp.database.config.json`
-
-![alt text](./.readme/anonuserscreate.png)
-
-### Non-logged in users receive 403's when they try to Delete as configured in `swa-db-connections/staticwebapp.database.config.json`
-
-![alt text](./.readme/anonusersdelete.png)
-
-### Log in page with `admin` role
-
-![alt text](./.readme/authpage.png)
-
-### Non-logged in users receive succesful 201's when they try to Create as configured in `swa-db-connections/staticwebapp.database.config.json`![alt text](./.readme/adminuserscreate.png)
