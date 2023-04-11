@@ -25,10 +25,13 @@ This project uses the Data API Builder integrated with Static Web Apps to provid
 1. Clone this repository
 2. Navigate to `root` directory & open with VSCode
 3. Set the `DATABASE_CONNECTION_STRING` environment variable to your connection string in your terminal/cmd/powershell. Alternatively, paste your database connection string directly into `swa-db-connections/staticwebapp.database.config.json` (_not recommended_) (ensure that you remove this secret from your source code before pushing to GitHub/remote repository)
-4. Run `swa start http://localhost:4200 -db ./swa-db-connections —run “ng serve”`
-    _ `npm i && ng serve` will install needed npm packages and run your Angular app
-    _ `--data-api-location swa-db-connections` indicates to the SWA CLI that your database connections configurations are in the `swa-db-connections` folder
-   Alternatively, you can start all these projects manually an make use of SWA CLI's other args
+4. Run `swa start http://localhost:4200 -db ./swa-db-connections` to kick start the Static web app with
+   database connections
+5. In a new terminal, Run `npm i && ng serve` will install needed npm packages and run your Angular app
+
+`--data-api-location swa-db-connections` indicates to the SWA CLI that your database connections configurations are in the `swa-db-connections` folder
+
+Alternatively, you can start all these projects manually an make use of SWA CLI's other args
 
 You can now use your Wonders Demo Application. It supports authorization, such that anyone logged in with SWA CLI's authentication emulation with the `anonymous` role will have `CRUD` access. See the configurations detailed in `staticwebapp.database.config.json`
 
