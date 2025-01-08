@@ -28,13 +28,13 @@ This project uses the Data API Builder integrated with Static Web Apps to provid
 
 3. Set the `DATABASE_CONNECTION_STRING` environment variable to your connection string in your terminal/cmd/powershell. 
 
-    ```azurecli
-    set DATABASE_CONNECTION_STRING = "<<Azure Cosmos DB Connection String>>"
-    ```
+         ```azurecli
+         set DATABASE_CONNECTION_STRING = "<<Azure Cosmos DB Connection String>>"
+         ```
 
-   Alternatively, paste your database connection string directly into `swa-db-connections/staticwebapp.database.config.json` (_not recommended_) (ensure that you remove this secret from your source code before pushing to GitHub/remote repository)
+         Alternatively, paste your database connection string directly into `swa-db-connections/staticwebapp.database.config.json` (_not recommended_) (ensure that you remove this secret from your source code before pushing to GitHub/remote repository)
 
-4. Run `swa start http://localhost:4200 -db swa-db-connections --run "npm i && ng serve --proxy-config proxy.conf.json"` to kick start the Static web app with database connections using Data api builder
+4. Run `swa start http://localhost:4200 -db swa-db-connections --run "npm i && ng serve"` to kick start the Static web app with database connections using Data api builder
 
 5. In a new terminal, Run `npm i && ng serve` will install needed npm packages and run your Angular app
 
