@@ -1,41 +1,68 @@
 {
-  "$schema": "https://dataapibuilder.azureedge.net/schemas/v0.5.34/dab.draft.schema.json",
+  "$schema": "https://github.com/Azure/data-api-builder/releases/download/vmajor.minor.patch/dab.draft.schema.json",
   "data-source": {
     "database-type": "cosmosdb_nosql",
-    "options": {
-      "database": "dab-cosmos-demo",
-      "schema": "staticwebapp.database.schema.gql"
-    },
-    "connection-string": "@env('DATABASE_CONNECTION_STRING')"
+    "connection-string": "@env('DATABASE_CONNECTION_STRING')",
+   "options": {
+   "database": "wonders",
+   "container": "wonders",
+   "schema": "staticwebapp.database.schema.gql"
+}
   },
   "runtime": {
+    "rest": {
+      "enabled": false,
+      "path": "/api",
+      "request-body-strict": true
+    },
     "graphql": {
-      "allow-introspection": true,
       "enabled": true,
-      "path": "/graphql"
+      "path": "/graphql",
+      "allow-introspection": true
     },
     "host": {
-      "mode": "production",
       "cors": {
-        "origins": [
-          "http://localhost:4280"
-        ],
+        "origins": [],
         "allow-credentials": false
       },
       "authentication": {
         "provider": "StaticWebApps"
-      }
+      },
+      "mode": "development"
     }
   },
   "entities": {
     "Wonder": {
-      "source": "wonders",
+      "source": {
+        "object": "wonders.wonders"
+      },
+      "graphql": {
+        "enabled": true,
+        "type": {
+          "singular": "wonders",
+          "plural": "wonders"
+        }
+      },
+      "rest": {
+        "enabled": false
+      },
       "permissions": [
         {
+          "role": "anonymous",
           "actions": [
-            "*"
-          ],
-          "role": "anonymous"
+            {
+              "action": "create"
+            },
+            {
+              "action": "read"
+            },
+            {
+              "action": "update"
+            },
+            {
+              "action": "delete"
+            }
+          ]
         }
       ]
     }
