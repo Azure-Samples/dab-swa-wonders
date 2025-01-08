@@ -13,7 +13,7 @@ This project uses the Data API Builder integrated with Static Web Apps to provid
 
 ### Prerequisites
 
-1. An Azure Cosmos DB Account (NOSQL API) with collection(wonders) created[Cosmos DB NoSQL API database account](https://learn.microsoft.com/azure/cosmos-db/sql/create-cosmosdb-resources-portal#create-an-azure-cosmos-db-account)
+1. An Azure Cosmos DB Account (NOSQL API) with collection(wonders) created [Cosmos DB NoSQL API database account](https://learn.microsoft.com/azure/cosmos-db/sql/create-cosmosdb-resources-portal#create-an-azure-cosmos-db-account) with partition key as "country".
 2. Once the container is created, we can import the sample data from `wonders.json` which is placed in the ['sample-data'](./sample-data/wonders.json) to the wonders collection by using the add new item option (Make sure you add one by one item) in the Azure Data Explorer.
    ![Cosmos DB Add New Document](./media/insert-new-document.png)
 3. Latest NodeJS and NPM installed
@@ -23,15 +23,24 @@ This project uses the Data API Builder integrated with Static Web Apps to provid
 ### Installation
 
 1. Clone this repository
+
 2. Navigate to `root` directory & open with VSCode
-3. Set the `DATABASE_CONNECTION_STRING` environment variable to your connection string in your terminal/cmd/powershell. Alternatively, paste your database connection string directly into `swa-db-connections/staticwebapp.database.config.json` (_not recommended_) (ensure that you remove this secret from your source code before pushing to GitHub/remote repository)
-4. Run `swa start http://localhost:4200 -db ./swa-db-connections` to kick start the Static web app with
-   database connections
+
+3. Set the `DATABASE_CONNECTION_STRING` environment variable to your connection string in your terminal/cmd/powershell. 
+
+    ```azurecli
+    set DATABASE_CONNECTION_STRING = "<<Azure Cosmos DB Connection String>>"
+    ```
+
+Alternatively, paste your database connection string directly into `swa-db-connections/staticwebapp.database.config.json` (_not recommended_) (ensure that you remove this secret from your source code before pushing to GitHub/remote repository)
+
+4. Run `swa start http://localhost:4200 -db swa-db-connections --run "npm i && ng serve --proxy-config proxy.conf.json"` to kick start the Static web app with database connections using Data api builder
+
 5. In a new terminal, Run `npm i && ng serve` will install needed npm packages and run your Angular app
 
-`--data-api-location swa-db-connections` indicates to the SWA CLI that your database connections configurations are in the `swa-db-connections` folder
+> [!TIP]
 
-Alternatively, you can start all these projects manually an make use of SWA CLI's other args
+>  `--data-api-location swa-db-connections` indicates to the SWA CLI that your database connections configurations are in the `swa-db-connections` folder
 
 You can now use your Wonders Demo Application. It supports authorization, such that anyone logged in with SWA CLI's authentication emulation with the `anonymous` role will have `CRUD` access. See the configurations detailed in `staticwebapp.database.config.json`
 
