@@ -28,27 +28,28 @@ This project uses the Data API Builder integrated with Static Web Apps to provid
 
 3. Set the `DATABASE_CONNECTION_STRING` environment variable to your connection string in your terminal/cmd/powershell. 
 
-    ```azurecli
-    set DATABASE_CONNECTION_STRING = "<<Azure Cosmos DB Connection String>>"
-    ```
+         ```azurecli
+         set DATABASE_CONNECTION_STRING = "<<Azure Cosmos DB Connection String>>"
+         ```
 
-Alternatively, paste your database connection string directly into `swa-db-connections/staticwebapp.database.config.json` (_not recommended_) (ensure that you remove this secret from your source code before pushing to GitHub/remote repository)
+         Alternatively, paste your database connection string directly into `swa-db-connections/staticwebapp.database.config.json` (_not recommended_) (ensure that you remove this secret from your source code before pushing to GitHub/remote repository)
 
-4. Run `swa start http://localhost:4200 -db swa-db-connections --run "npm i && ng serve --proxy-config proxy.conf.json"` to kick start the Static web app with database connections using Data api builder
+4. Run `swa start http://localhost:4200 -db swa-db-connections --run "npm i && ng serve"` to kick start the Static web app with database connections using Data api builder
 
 5. In a new terminal, Run `npm i && ng serve` will install needed npm packages and run your Angular app
 
-> [!TIP]
+      > [!TIP]
 
->  `--data-api-location swa-db-connections` indicates to the SWA CLI that your database connections configurations are in the `swa-db-connections` folder
+      >  `--data-api-location swa-db-connections` indicates to the SWA CLI that your database connections configurations are in the `swa-db-connections` folder
 
-You can now use your Wonders Demo Application. It supports authorization, such that anyone logged in with SWA CLI's authentication emulation with the `anonymous` role will have `CRUD` access. See the configurations detailed in `staticwebapp.database.config.json`
+      You can now use your Wonders Demo Application. It supports authorization, such that anyone logged in with SWA CLI's authentication emulation with the `anonymous` role will have `CRUD` access. See the configurations detailed in `staticwebapp.database.config.json`
 
 ### To deploy
 
 1. Commit all your changes and push to your repository.
    - You do not need to change your configuration file's `data-source` object, since this will be overwritten by your Static Web App resource when you connect a database.
    - (If you have paste your connection string directly in your configuration file, ensure that you remove it to avoid making your database connection string public)
+   - Also need to update graphql endpoint the `graphql.module.ts` file as '/data-api/graphql`.
 2. Go to your Static Web App resource in the portal. Go to the Database connection tab.
 3. Ensure that your database is ready for connection. It should be configured to accept network requests from Azure services. If you plan to use managed identity as a connection type, ensure that you've configured the managed identity within your database.
 4. Link your database to your default environment. Select your database & enter the credentials.
