@@ -43,7 +43,7 @@ const get_wonder = gql`
 
 const post_createWonder = gql`
   mutation ($item: CreateWonderInput!) {
-    createWonder(item: $item) {
+    createwonders(item: $item) {
       id
       name
       type
@@ -59,12 +59,12 @@ const post_createWonder = gql`
 `;
 
 const post_updateWonder = gql`
-  mutation updateWonder(
+  mutation updatewonders(
     $_partitionKeyValue: String!
     $id: ID!
     $item: UpdateWonderInput
   ) {
-    updateWonder(_partitionKeyValue: $_partitionKeyValue, id: $id, item: $item) {
+    updatewonders(_partitionKeyValue: $_partitionKeyValue, id: $id, item: $item) {
       id
       name
       type
@@ -80,8 +80,8 @@ const post_updateWonder = gql`
 `;
 
 const post_deleteWonder = gql`
-  mutation deleteWonder($_partitionKeyValue: String!, $id: ID!) {
-    deleteWonder(_partitionKeyValue: $_partitionKeyValue, id: $id) {
+  mutation deletewonders($_partitionKeyValue: String!, $id: ID!) {
+    deletewonders(_partitionKeyValue: $_partitionKeyValue, id: $id) {
       id
       name
       type
@@ -138,7 +138,7 @@ export class WondersService {
   getSuggestions(term: string): Observable<any> {
     return this.apollo.watchQuery<any>({
       query: get_suggestedWonders,
-      variables: { filter: { id: { contains: term } } },
+      variables: { filter: { name: { contains: term } } },
     }).valueChanges;
   }
 

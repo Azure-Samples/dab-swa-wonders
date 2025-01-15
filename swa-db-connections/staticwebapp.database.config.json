@@ -22,7 +22,7 @@
     },
     "host": {
       "cors": {
-        "origins": ["http://localhost:4200"],
+        "origins": ["http://localhost:4280","http://localhost:4200"],
         "allow-credentials": false
       },
       "authentication": {
