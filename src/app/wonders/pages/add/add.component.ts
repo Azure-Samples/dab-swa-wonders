@@ -70,7 +70,7 @@ export class AddComponent implements OnInit {
     if (this.wonder.name.trim().length===0){
       return ;
     }
-
+   
     if (this.wonder.id) {
         this.wondersService.updateWonder(this.wonder)
         .subscribe( resp =>{
@@ -79,6 +79,7 @@ export class AddComponent implements OnInit {
         });
 
     } else {
+      this.wonder.id = Math.random().toString();
       this.wondersService.addWonder(this.wonder)
       .subscribe(({data}:any)=>{
         this.router.navigate(['/wonders/list']);

@@ -16,6 +16,7 @@ export class SearchComponent implements OnInit {
   selectedWonder!: Wonder | undefined;
   termChanged = new Subject<string>();
 
+
   constructor(private wondersService: WondersService) {
     this.termChanged.pipe(debounceTime(300)).subscribe((term) => {
       this.search(term);
