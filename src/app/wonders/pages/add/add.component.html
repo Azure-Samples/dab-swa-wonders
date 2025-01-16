@@ -1,6 +1,6 @@
 <h1 class="animate__animated animate__fadeIn">
-  {{ wonder.id ? "Edit" : "New Wonder" }}
-  <small> {{ wonder.name }} </small>
+  {{ wonder?.id ? "Edit" : "New Wonder" }}
+  <small> {{ wonder?.name }} </small>
 </h1>
 
 <div
@@ -13,9 +13,9 @@
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
       <mat-form-field fxFlex="100" fxLayout.xs="column">
         <mat-label>Name</mat-label>
-        <input matInput type="text" required [(ngModel)]="wonder.name" />
+        <input matInput type="text" required [(ngModel)]="wonder.name" #name="ngModel"/>
       </mat-form-field>
-
+      <p>Current value: {{ wonder.name }}</p>
       <mat-form-field fxFlex="100">
         <mat-label>Location</mat-label>
         <input matInput type="text" required [(ngModel)]="wonder.location" />
@@ -40,8 +40,8 @@
     <mat-form-field fxFlex="100">
       <mat-label>Type</mat-label>
       <mat-select required [(ngModel)]="wonder.type">
-        <mat-option *ngFor="let type of types" [value]="type.id">
-          {{ type.id }}
+        <mat-option *ngFor="let type of types" [value]="type.desc">
+          {{ type?.id }}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -54,7 +54,7 @@
     <div fxLayout>
       <button mat-raised-button color="accent" (click)="save()">
         <mat-icon> save </mat-icon>
-        {{ wonder.id ? "Update" : "Save" }}
+        {{ wonder?.id ? "Update" : "Save" }}
       </button>
 
       <span class="spacer"></span>
