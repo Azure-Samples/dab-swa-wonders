@@ -32,7 +32,7 @@ export class WonderComponent implements OnInit {
       .pipe(
         switchMap( ({id})=> this.wondersService.getWonderById(id))
       )
-      .subscribe((data: any) => { this.wonder = data.data.wonder_by_pk; console.log(this.wonder) });
+      .subscribe((data: any) => { this.wonder = data.data.wonders_by_pk; console.log(this.wonder) });
   }
 
   comeBack(){

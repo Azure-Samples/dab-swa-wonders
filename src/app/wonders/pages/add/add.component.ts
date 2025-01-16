@@ -29,6 +29,10 @@ export class AddComponent implements OnInit {
     {
       id: 'Civil',
       desc: 'Civil'
+    },
+    {
+      id: 'Ancient',
+      desc: 'Ancient'
     }
   ]
 
@@ -63,7 +67,7 @@ export class AddComponent implements OnInit {
       .pipe(
         switchMap(({id})=>this.wondersService.getWonderById(id))
       )
-      .subscribe((data: any) => { this.wonder = data.data.wonder_by_pk; console.log(this.wonder) });
+      .subscribe((data: any) => { this.wonder = data.data.wonders_by_pk as Wonder; console.log(this.wonder) });
   }
 
   save(){
@@ -74,7 +78,7 @@ export class AddComponent implements OnInit {
     if (this.wonder.id) {
         this.wondersService.updateWonder(this.wonder)
         .subscribe( resp =>{
-          this.wonder=resp;
+          this.wonder=resp.data.updatewonders;
           this.showSnackbar("The wonder was updated");
         });
 

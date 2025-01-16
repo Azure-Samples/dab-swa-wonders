@@ -25,8 +25,8 @@ const get_wonders = gql`
 `;
 
 const get_wonder = gql`
-  query wonder_by_pk($_partitionKeyValue: String!, $id: ID!) {
-    wonder_by_pk(_partitionKeyValue: $_partitionKeyValue, id: $id) {
+  query wonder_by_pk($id: ID!) {
+    wonders_by_pk( id: $id) {
       id
       name
       type
@@ -60,11 +60,11 @@ const post_createWonder = gql`
 
 const post_updateWonder = gql`
   mutation updatewonders(
+    $id: ID!,
     $_partitionKeyValue: String!
-    $id: ID!
-    $item: UpdateWonderInput
+    $item: UpdateWonderInput!
   ) {
-    updatewonders(_partitionKeyValue: $_partitionKeyValue, id: $id, item: $item) {
+    updatewonders(id: $id,_partitionKeyValue: $_partitionKeyValue, item: $item) {
       id
       name
       type
@@ -131,7 +131,7 @@ export class WondersService {
   getWonderById(id: string): Observable<any> {
     return this.apollo.watchQuery<any>({
       query: get_wonder,
-      variables: { _partitionKeyValue: id, id: id },
+      variables: { id: id },
     }).valueChanges;
   }
 
@@ -165,7 +165,7 @@ export class WondersService {
     return this.apollo.mutate({
       mutation: post_updateWonder,
       variables: {
-        _partitionKeyValue: wonder.id,
+        _partitionKeyValue: wonder.country,
         id: wonder.id,
         item: {
           id: wonder.id,
@@ -186,7 +186,7 @@ export class WondersService {
     return this.apollo.mutate({
       mutation: post_deleteWonder,
       variables: {
-        _partitionKeyValue: wonder.id,
+        _partitionKeyValue: wonder.country,
         id: wonder.id,
       },
     });
