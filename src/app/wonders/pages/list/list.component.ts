@@ -15,10 +15,11 @@ export class ListComponent implements OnInit {
   wonders: Wonder[] = [];
 
   constructor(private wondersService: WondersService) { 
+    this.loadWonders();
   }
 
   ngOnInit(): void {
-     this.loadWonders();
+    
   }
   logAnimation(_event: any) {
     console.log(_event);
