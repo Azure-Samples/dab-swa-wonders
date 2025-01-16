@@ -67,10 +67,14 @@ export class AddComponent implements OnInit {
       .pipe(
         switchMap(({id})=>this.wondersService.getWonderById(id))
       )
-      .subscribe((data: any) => { this.wonder = data.data.wonders_by_pk as Wonder; console.log(this.wonder) });
+      .subscribe((data: any) => { 
+        console.log("###frozen",Object.isFrozen(this.wonder)); 
+        this.wonder = data.data.wonders_by_pk as Wonder; console.log(this.wonder) 
+      });
   }
 
   save(){
+     
     if (this.wonder.name.trim().length===0){
       return ;
     }
@@ -91,6 +95,10 @@ export class AddComponent implements OnInit {
       });
     }
 
+  }
+
+  onNameChange(newValue: string) {
+    console.log('New name:', newValue);
   }
 
   delete(){

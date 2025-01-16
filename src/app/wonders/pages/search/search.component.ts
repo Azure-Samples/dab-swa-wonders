@@ -45,6 +45,7 @@ export class SearchComponent implements OnInit {
     }
 
     const wonder: Wonder = event.option.value;
+    this.selectedWonder = wonder;
     this.term = wonder.name;
   }
 }
